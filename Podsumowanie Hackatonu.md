@@ -31,15 +31,25 @@ Prawdopodobnie niskie pole do dalszych ulepszeń modelu.
 
 🔗 **Repo:** [link do repozytorium](https://github.com/andrzejewskimaciej/EnsembleAI_Krety_T2)
 
-**Cel zadania:** stworzenie narzędzia auto-complete, który na podstawie dostępnych plików wybranego repozytorium będzie jak najdokładniej podpowiadał kolejne fragmenty kodu (uwzględniając np. istniejące w innych plikach funkcje)
+**Cel zadania:** Stworzenie precyzyjnego rurociągu zbierania kontekstu (Context Collection Pipeline) dla środowisk Python, który wyszukuje najbardziej trafne fragmenty kodu w repozytorium do zasilenia modeli auto-complete.
 
-Co zrobione: ???
+**Co zrobione:**
+* **Strategia Regex-Definition:** Szybkie wyszukiwanie oparte na wyrażeniach regularnych, dopasowujące słowa wokół kursora do definicji w innych plikach.
+* **Analiza luki (FIM):** Wyodrębnienie kluczowego słownictwa z 40 linii wokół edytowanego miejsca (tzw. metoda Fill-in-the-Middle).
+* **Priorytetyzacja (Tier System):** Pliki zawierające definicje wywoływanych funkcji dostają najwyższy priorytet. Pliki z ogólnym podobieństwem słownictwa są dodawane w drugiej kolejności.
+* **Obrona przed przycinaniem (Left-Trim Defense):** Systemy oceniające ucinają długi kontekst od lewej strony (Mellum ma limit 8K tokenów). Skrypt celowo odwraca kolejność doklejanych plików, aby najważniejsze z nich lądowały na końcu i uniknęły ucięcia.
+* **Formatowanie:** Fragmenty kodu połączono wymaganym tokenem `<|file_sep|>`.
 
-Co można ulepszyć: ???
+**Co można ulepszyć:**
+* **Zastosowanie AST:** Zastąpienie regexów parsowaniem drzewa składniowego (AST) dla bezbłędnego śledzenia importów. 
+* **Algorytm BM25:** Wdrożenie zaawansowanego wyszukiwania leksykalnego (TF-IDF) do lepszego punktowania powiązań między plikami.
+* **Struktura katalogów:** Dodanie punktów premiowych dla plików znajdujących się w tym samym folderze co edytowany plik.
+* **"Self-Healing":** Ratowanie obciętych na samej górze importów i wstrzykiwanie ich z powrotem tuż nad lukę.
 
-Metryka: ???
-
----
+**Metryka:**
+* Wynik **0.35** na ukrytych danych testowych.
+* Użyto metryki **ChrF Score** , która mierzy precyzję i pełność na poziomie pojedynczych znaków, co świetnie wyłapuje różnice w składni.
+* Ostateczny wynik zależy od średniej z trzech testowanych modeli (Mellum, Codestral, Qwen2.5-Coder).
 
 ### Task 3 - Heat Pump Grid Load Forecasting
 
@@ -79,7 +89,7 @@ Metryka oceny rozwiązania: zaproponowana przez organizatorów: korelacja Pearso
 | Data         | Temat / Cel spotkania                                   |
 | ------------ | ------------------------------------------------------- |
 | Pon, [23.03] | Ustalenie szcegółów dotyczących dalszej realizacji prac |
-| Pon, [13.03] | Prezentacja kompleksowego rozwiązania do taska 3.       |
+| Pon, [13.04] | Prezentacja kompleksowego rozwiązania do taska 3.       |
 | Pon, [4.05]  | Prezentacja kompleksowego rozwiązania do taska 4.       |
 
 ---
