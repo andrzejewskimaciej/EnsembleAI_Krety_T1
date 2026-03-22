@@ -50,7 +50,7 @@ Prawdopodobnie niskie pole do dalszych ulepszeń modelu.
 * Wynik **0.35** na ukrytych danych testowych.
 * Użyto metryki **ChrF Score** , która mierzy precyzję i pełność na poziomie pojedynczych znaków, co świetnie wyłapuje różnice w składni.
 * Ostateczny wynik zależy od średniej z trzech testowanych modeli (Mellum, Codestral, Qwen2.5-Coder).
-
+---
 ### Task 3 - Heat Pump Grid Load Forecasting
 
 🔗 **Repo:** [link do repozytorium](https://github.com/andrzejewskimaciej/EnsembleAI_Krety_T3)
